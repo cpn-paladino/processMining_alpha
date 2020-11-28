@@ -1,0 +1,5 @@
+git add .
+git commit -am "adjust"
+git push -u origin main
+--- pegar modificação dos colegas
+git pull
