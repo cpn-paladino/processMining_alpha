@@ -8,7 +8,8 @@ from util.generatelog.log import EventLog, Trace, Event
 from util.generatelog import sorting, index_attribute
 from util.generatelog import parameters as param_util
 
-class Parameters(Enum):
+# 4 change from Enum to enumerate
+class Parameters(enumerate):
     TIMESTAMP_SORT = False
     TIMESTAMP_KEY = xes_constants.DEFAULT_TIMESTAMP_KEY
     REVERSE_SORT = False
@@ -37,25 +38,24 @@ def import_log(filename):
             Parameters.REVERSE_SORT -> Specify in which direction the log should be sorted
             Parameters.INSERT_TRACE_INDICES -> Specify if trace indexes should be added as event attribute for each event
             Parameters.MAX_TRACES -> Specify the maximum number of traces to import from the log (read in order in the XML file)
-
     Returns
     -------
     log : :class:`pm4py.log.log.EventLog`
         A log
     """
-    from lxml import etree
-    # 2 removed if parameters
-    # created a empty dictionary of parameters
+    from lxml import etree    
+    # 3 created a empty dictionary of parameters
     parameters = dict()
     
-    # 3 Pass a parameter INSERT_TRACE_INDICES   
+    # 3 Pass a parameter INSERT_TRACE_INDICES: Specify if trace indexes should be added as event attribute for each event   
+    # INSERT_TRACE_INDICES = False -> Because they aren't added
     insert_trace_indexes = Parameters.INSERT_TRACE_INDICES
     
-    # 4 Pass a VALUE of parameter INSERT_TRACE_INDICES    
-    max_no_traces_to_import = Parameters.MAX_TRACES.value
+    # 5 Pass a VALUE of parameter INSERT_TRACE_INDICES    
+    # Parameters.MAX_TRACES.value = 1.000.000.000 one bilion -> the max number of traces
+    max_no_traces_to_import = Parameters.MAX_TRACES
 
-    #permite método apply para conversão de data
-
+    # 6 Return a method called "apply" to convert data
     date_parser = dt_parser
     context = etree.iterparse(filename, events=[_EVENT_START, _EVENT_END])
 
