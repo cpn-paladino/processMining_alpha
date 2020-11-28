@@ -7,14 +7,14 @@ log_path = "running-example.xes"
 
 def execute_script():
     # 1 process log
-    log = iterparse.apply(log_path)
+    log = iterparse.import_log(log_path)
     # 2 get petrinet with init and end
     net, i_m, f_m = alpha_miner.apply(log)
     # 3 generate diagram
     gviz = pn_vis.apply(net, i_m, f_m,
                         parameters={pn_vis.Variants.WO_DECORATION.value.Parameters.FORMAT: "png",
                                     pn_vis.Variants.WO_DECORATION.value.Parameters.DEBUG: False})
-    #pn_vis.view(gviz)
+    # pn_vis.view(gviz)
     # 4 save on default path
     pn_vis.save(gviz, "z_alpha_miner_petri_net.png")
 

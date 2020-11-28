@@ -20,13 +20,7 @@ class Parameters(Enum):
 _EVENT_END = 'end'
 _EVENT_START = 'start'
 
-
-# 1 main method for process filename, removed parameters
-def apply(filename): #, parameters=None):
-    return import_log(filename) #, parameters)
-
-
-# 2 import method from file, removed parameters
+# 1 import method from file, removed parameters
 def import_log(filename):
     
     """
@@ -50,13 +44,15 @@ def import_log(filename):
         A log
     """
     from lxml import etree
-    # 3 removed if parameters
-    # created a dictionary with parameters
-    parameters = dict() #if parameters is None else parameters
+    # 2 removed if parameters
+    # created a empty dictionary of parameters
+    parameters = dict()
     
-    # created a dictionary with parameters
-    insert_trace_indexes = param_util.fetch(Parameters.INSERT_TRACE_INDICES, parameters)
-    max_no_traces_to_import = param_util.fetch(Parameters.MAX_TRACES, parameters)
+    # 3 Pass a parameter INSERT_TRACE_INDICES   
+    insert_trace_indexes = Parameters.INSERT_TRACE_INDICES
+    
+    # 4 Pass a VALUE of parameter INSERT_TRACE_INDICES    
+    max_no_traces_to_import = Parameters.MAX_TRACES.value
 
     #permite método apply para conversão de data
 

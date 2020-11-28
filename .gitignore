@@ -5,3 +5,6 @@ __pycache__/
 # ide settings
 .vscode/
 .idea/
+# other files
+desktop.ini
+*.png
