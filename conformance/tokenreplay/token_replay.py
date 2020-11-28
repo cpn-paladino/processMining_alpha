@@ -1,3 +1,4 @@
+'''
 from pm4py.statistics.variants.log import get as variants_module
 from pm4py.util import xes_constants as xes_util
 from pm4py.objects.petri import semantics
@@ -5,9 +6,12 @@ from pm4py.objects.petri.petrinet import Marking
 from pm4py.objects.petri.utils import get_places_shortest_path_by_hidden, get_s_components_from_petri
 from pm4py.objects.log import log as log_implementation
 from pm4py.objects.petri import align_utils
+from pm4py.util import exec_utils, constants
+'''
+import alpha.constants as constants
 from copy import copy
 from enum import Enum
-from pm4py.util import exec_utils, constants
+
 
 
 class Parameters(Enum):

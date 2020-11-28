@@ -15,7 +15,14 @@ References
 
 import time
 from itertools import product
-
+from util import exec_utils
+from util.Parameters import Parameters
+import util.xes_constants as xes_constants
+import alpha.dfg.variants.native as dfg_inst
+from util import endpoints
+import alpha.data_structures.alpha_classic_abstraction as alpha_classic_abstraction
+from visualization.common.petrinet import PetriNet
+'''
 from pm4py import util as pm_util
 from pm4py.algo.discovery.alpha.data_structures import alpha_classic_abstraction
 from pm4py.algo.discovery.alpha.utils import endpoints
@@ -25,7 +32,7 @@ from pm4py.objects.petri.petrinet import PetriNet, Marking
 from pm4py.objects.petri.utils import add_arc_from_to
 from pm4py.algo.discovery.parameters import Parameters
 from pm4py.util import exec_utils
-
+'''
 
 def apply(log, parameters=None):
     """
@@ -59,7 +66,7 @@ def apply(log, parameters=None):
     if parameters is None:
         parameters = {}
     activity_key = exec_utils.get_param_value(Parameters.ACTIVITY_KEY, parameters,
-                                              pm_util.xes_constants.DEFAULT_NAME_KEY)
+                                              xes_constants.DEFAULT_NAME_KEY)
     dfg = {k: v for k, v in dfg_inst.apply(log, parameters=parameters).items() if v > 0}
     start_activities = endpoints.derive_start_activities_from_log(log, activity_key)
     end_activities = endpoints.derive_end_activities_from_log(log, activity_key)
@@ -122,7 +129,7 @@ def apply_dfg_sa_ea(dfg, start_activities, end_activities, parameters=None):
         parameters = {}
 
     activity_key = exec_utils.get_param_value(Parameters.ACTIVITY_KEY, parameters,
-                                              pm_util.xes_constants.DEFAULT_NAME_KEY)
+                                              xes_constants.DEFAULT_NAME_KEY)
 
     if start_activities is None:
         start_activities = dfg_utils.infer_start_activities(dfg)

@@ -7,14 +7,7 @@ import util.date.dummy as dt_parser
 from util.generatelog.log import EventLog, Trace, Event
 from util.generatelog import sorting, index_attribute
 from util.generatelog import parameters as param_util
-
-# 4 change from Enum to enumerate
-class Parameters(enumerate):
-    TIMESTAMP_SORT = False
-    TIMESTAMP_KEY = xes_constants.DEFAULT_TIMESTAMP_KEY
-    REVERSE_SORT = False
-    INSERT_TRACE_INDICES = False
-    MAX_TRACES = 1000000000
+from util.Parameters import Parameters
 
 
 # ITERPARSE EVENTS
@@ -57,6 +50,8 @@ def import_log(filename):
 
     # 6 Return a method called "apply" to convert data
     date_parser = dt_parser
+
+    # 7 convert xml to Tree of Elements according event at xml using SAX style parsing
     context = etree.iterparse(filename, events=[_EVENT_START, _EVENT_END])
 
     # check to see if log has a namespace before looking for traces  (but this might be more effort than worth)

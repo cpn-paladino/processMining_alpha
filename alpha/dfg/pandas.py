@@ -1,5 +1,6 @@
+'''
 from pm4py.util import xes_constants, pandas_utils, constants
-
+'''
 
 def get_dfg_graph(df, measure="frequency", activity_key="concept:name", case_id_glue="case:concept:name",
                   start_timestamp_key=None, timestamp_key="time:timestamp", perf_aggregation_key="mean",

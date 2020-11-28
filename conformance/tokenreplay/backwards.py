@@ -1,10 +1,16 @@
+'''
 from pm4py.statistics.variants.log import get as variants_filter
 from pm4py.objects.petri.semantics import is_enabled, weak_execute
 from pm4py.objects.petri.align_utils import get_visible_transitions_eventually_enabled_by_marking
-from copy import copy
-from pm4py.objects.petri.petrinet import Marking
-from collections import Counter
 from pm4py.util import exec_utils, constants, xes_constants
+from pm4py.objects.petri.petrinet import Marking
+'''
+from util.Parameters import Parameters
+import alpha.constants as constants
+from copy import copy
+
+from collections import Counter
+
 from enum import Enum
 
 

@@ -1,3 +1,6 @@
+import util.xes_constants as xes
+
+'''
 from pm4py.statistics.attributes.common import get as attributes_common
 from pm4py.objects.conversion.log import converter as log_conversion
 from pm4py.objects.log.log import EventLog
@@ -5,7 +8,7 @@ from pm4py.util import xes_constants as xes
 from pm4py.util.xes_constants import DEFAULT_TIMESTAMP_KEY
 from pm4py.statistics.parameters import Parameters
 from pm4py.util import exec_utils
-
+'''
 
 def get_all_trace_attributes_from_log(log):
     """
@@ -191,7 +194,7 @@ def get_kde_numeric_attribute_json(log, attribute, parameters=None):
     return attributes_common.get_kde_numeric_attribute_json(values, parameters=parameters)
 
 
-def get_kde_date_attribute(log, attribute=DEFAULT_TIMESTAMP_KEY, parameters=None):
+def get_kde_date_attribute(log, attribute=xes.DEFAULT_TIMESTAMP_KEY, parameters=None):
     """
     Gets the KDE estimation for the distribution of a date attribute values
 
@@ -224,7 +227,7 @@ def get_kde_date_attribute(log, attribute=DEFAULT_TIMESTAMP_KEY, parameters=None
     return attributes_common.get_kde_date_attribute(values, parameters=parameters)
 
 
-def get_kde_date_attribute_json(log, attribute=DEFAULT_TIMESTAMP_KEY, parameters=None):
+def get_kde_date_attribute_json(log, attribute=xes.DEFAULT_TIMESTAMP_KEY, parameters=None):
     """
     Gets the KDE estimation for the distribution of a date attribute values
     (expressed as JSON)

@@ -1,0 +1,6 @@
+
+# iterparse() function (SAX style parsing).
+SAX style parsing
+https://pt.wikipedia.org/wiki/Simple_API_for_XML
+SAX é uma API que provê acesso serial ao conteúdo de um documento XML de forma orientada a eventos
+A principal vantagem do SAX é o menor gasto de memória,
