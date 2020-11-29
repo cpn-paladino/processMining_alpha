@@ -5,16 +5,13 @@ from visualization import visualizer as pn_vis
  # old path: "G:\\Meu Drive\\SIN-5025\\01-Trabalho\\04-Projeto Final\\01-AlphaAlgo\\pm4py-core\\tests\\input_data\\running-example.xes"
 log_path = "running-example.xes"
 
+# created function to visualize log structure
 def saveLog(log):
     with open("z_logProcessed.txt", 'w') as f:
         for i in log:            
             for j in i:
                 f.write(str(j))
                 f.write("\n")
-
-
-
-
 
 def execute_script():
     # 1 process log
