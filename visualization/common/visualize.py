@@ -2,7 +2,7 @@ import tempfile
 
 from graphviz import Digraph
 
-from visualization.common.petrinet import Marking
+from objects.petri.petrinet import Marking
 from util import exec_utils
 from enum import Enum
 from visualization.common.petri.parameters import Parameters

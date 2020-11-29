@@ -18,16 +18,18 @@ def execute_script():
     log = iterparse.import_log(log_path)
     saveLog(log)
     # 2 get petrinet with init and end
-    #net, i_m, f_m = alpha_miner.apply(log)
-
+    net, i_m, f_m = alpha_miner.apply(log)
+    print(net.name)  
+    print(i_m)
+    print(f_m)
     # 3 generate diagram
 
-    #gviz = pn_vis.apply(net, i_m, f_m,
-    #                    parameters={pn_vis.Variants.WO_DECORATION.value.Parameters.FORMAT: "png",
-    #                                pn_vis.Variants.WO_DECORATION.value.Parameters.DEBUG: False})
+    gviz = pn_vis.apply(net, i_m, f_m,
+                        parameters={pn_vis.Variants.WO_DECORATION.value.Parameters.FORMAT: "png",
+                                    pn_vis.Variants.WO_DECORATION.value.Parameters.DEBUG: False})
     # pn_vis.view(gviz)
     # 4 save on default path
-    #pn_vis.save(gviz, "z_alpha_miner_petri_net.png")
+    pn_vis.save(gviz, "z22_alpha_miner_petri_net.png")
 
 
 if __name__ == "__main__":

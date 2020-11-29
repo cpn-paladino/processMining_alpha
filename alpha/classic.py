@@ -21,14 +21,16 @@ import util.xes_constants as xes_constants
 import alpha.dfg.variants.native as dfg_inst
 from util import endpoints
 import alpha.data_structures.alpha_classic_abstraction as alpha_classic_abstraction
-from visualization.common.petrinet import PetriNet
+# packages about petrinet generation
+from objects.petri.petrinet import PetriNet, Marking
+from objects.petri.utils.utils import add_arc_from_to
 '''
 from pm4py import util as pm_util
 from pm4py.algo.discovery.alpha.data_structures import alpha_classic_abstraction
 from pm4py.algo.discovery.alpha.utils import endpoints
 from pm4py.objects.dfg.utils import dfg_utils
 from pm4py.algo.discovery.dfg.variants import native as dfg_inst
-from pm4py.objects.petri.petrinet import PetriNet, Marking
+--OK from pm4py.objects.petri.petrinet import PetriNet, Marking
 from pm4py.objects.petri.utils import add_arc_from_to
 from pm4py.algo.discovery.parameters import Parameters
 from pm4py.util import exec_utils
