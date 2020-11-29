@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from util.generatelog.log import EventLog
+from objects.log.log import EventLog
 import util.xes_constants as xes
 
 

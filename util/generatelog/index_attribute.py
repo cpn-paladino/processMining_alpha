@@ -1,5 +1,4 @@
-from util.generatelog.log import EventLog
-
+from objects.log.log import EventLog
 
 def insert_event_index_as_event_attribute(stream, event_index_attr_name="@@eventindex"):
     """

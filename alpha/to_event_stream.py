@@ -2,11 +2,8 @@ import math
 import pkgutil
 from copy import deepcopy
 from enum import Enum
-
 from alpha.conversion import constants
-
-# Original do Pm4Py está incorreto, apontando para diretório que não existe.
-from util.generatelog.log import EventStream, EventLog, Event, XESExtension
+from objects.log.log import EventStream, EventLog, Event, XESExtension
 from alpha import constants as pmutil
 from util import exec_utils, pandas_utils, xes_constants
 

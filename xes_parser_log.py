@@ -4,7 +4,7 @@ from enum import Enum
 
 import util.xes_constants as xes_constants
 import util.date.dummy as dt_parser
-from util.generatelog.log import EventLog, Trace, Event
+from objects.log.log import EventLog, Trace, Event
 from util.generatelog import sorting, index_attribute
 from util.generatelog import parameters as param_util
 from util.Parameters import Parameters
@@ -13,6 +13,13 @@ from util.Parameters import Parameters
 # ITERPARSE EVENTS
 _EVENT_END = 'end'
 _EVENT_START = 'start'
+
+# function to check is the element is Null
+def checkElementIsNotNone(element):
+    resultBool = False    
+    if(element is not None):
+        resultBool = True
+    return resultBool
 
 # 1 import method from file, removed parameters
 def import_log(filename):
@@ -73,14 +80,15 @@ def import_log(filename):
     event = None
 
     tree = {}
+
     for tree_event, elem in context:
         if tree_event == _EVENT_START:  # starting to read
             parent = tree[elem.getparent()] if elem.getparent() in tree else None
 
             if elem.tag.endswith(xes_constants.TAG_STRING):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     tree = __parse_attribute(elem, parent, elem.get(xes_constants.KEY_KEY),
-                                             elem.get(xes_constants.KEY_VALUE), tree)
+                                             elem.get(xes_constants.KEY_VALUE), tree)                    
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_DATE):
@@ -94,7 +102,7 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_EVENT):
-                if event is not None:
+                if checkElementIsNotNone(event):
                     raise SyntaxError('file contains <event> in another <event> tag')
                 event = Event()
                 tree[elem] = event
@@ -103,14 +111,14 @@ def import_log(filename):
             elif elem.tag.endswith(xes_constants.TAG_TRACE):
                 if len(log) >= max_no_traces_to_import:
                     break
-                if trace is not None:
+                if checkElementIsNotNone(trace):
                     raise SyntaxError('file contains <trace> in another <trace> tag')
                 trace = Trace()
                 tree[elem] = trace.attributes
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_FLOAT):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     try:
                         val = float(elem.get(xes_constants.KEY_VALUE))
                         tree = __parse_attribute(elem, parent, elem.get(xes_constants.KEY_KEY), val, tree)
@@ -119,7 +127,7 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_INT):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     try:
                         val = int(elem.get(xes_constants.KEY_VALUE))
                         tree = __parse_attribute(elem, parent, elem.get(xes_constants.KEY_KEY), val, tree)
@@ -128,7 +136,7 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_BOOLEAN):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     try:
                         val0 = elem.get(xes_constants.KEY_VALUE)
                         val = False
@@ -140,13 +148,13 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_LIST):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     # lists have no value, hence we put None as a value
                     tree = __parse_attribute(elem, parent, elem.get(xes_constants.KEY_KEY), None, tree)
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_ID):
-                if parent is not None:
+                if checkElementIsNotNone(parent):
                     tree = __parse_attribute(elem, parent, elem.get(xes_constants.KEY_KEY),
                                              elem.get(xes_constants.KEY_VALUE), tree)
                 continue
@@ -154,8 +162,9 @@ def import_log(filename):
             elif elem.tag.endswith(xes_constants.TAG_EXTENSION):
                 if log is None:
                     raise SyntaxError('extension found outside of <log> tag')
-                if elem.get(xes_constants.KEY_NAME) is not None and elem.get(
-                        xes_constants.KEY_PREFIX) is not None and elem.get(xes_constants.KEY_URI) is not None:
+                if checkElementIsNotNone(elem.get(xes_constants.KEY_NAME)) and \
+                   checkElementIsNotNone(elem.get(xes_constants.KEY_PREFIX)) and \
+                   checkElementIsNotNone(elem.get(xes_constants.KEY_URI)):
                     log.extensions[elem.get(xes_constants.KEY_NAME)] = {
                         xes_constants.KEY_PREFIX: elem.get(xes_constants.KEY_PREFIX),
                         xes_constants.KEY_URI: elem.get(xes_constants.KEY_URI)}
@@ -164,7 +173,7 @@ def import_log(filename):
             elif elem.tag.endswith(xes_constants.TAG_GLOBAL):
                 if log is None:
                     raise SyntaxError('global found outside of <log> tag')
-                if elem.get(xes_constants.KEY_SCOPE) is not None:
+                if checkElementIsNotNone(elem.get(xes_constants.KEY_SCOPE)):
                     log.omni_present[elem.get(xes_constants.KEY_SCOPE)] = {}
                     tree[elem] = log.omni_present[elem.get(xes_constants.KEY_SCOPE)]
                 continue
@@ -172,7 +181,7 @@ def import_log(filename):
             elif elem.tag.endswith(xes_constants.TAG_CLASSIFIER):
                 if log is None:
                     raise SyntaxError('classifier found outside of <log> tag')
-                if elem.get(xes_constants.KEY_KEYS) is not None:
+                if checkElementIsNotNone(elem.get(xes_constants.KEY_KEYS)):
                     classifier_value = elem.get(xes_constants.KEY_KEYS)
                     if "'" in classifier_value:
                         log.classifiers[elem.get(xes_constants.KEY_NAME)] = [x for x in classifier_value.split("'")
@@ -182,7 +191,7 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_LOG):
-                if log is not None:
+                if checkElementIsNotNone(log):
                     raise SyntaxError('file contains > 1 <log> tags')
                 log = EventLog()
                 tree[elem] = log.attributes
@@ -192,14 +201,14 @@ def import_log(filename):
             if elem in tree:
                 del tree[elem]
             elem.clear()
-            if elem.getprevious() is not None:
+            if checkElementIsNotNone(elem.getprevious()):
                 try:
                     del elem.getparent()[0]
                 except TypeError:
                     pass
 
             if elem.tag.endswith(xes_constants.TAG_EVENT):
-                if trace is not None:
+                if checkElementIsNotNone(trace):
                     trace.append(event)
                     event = None
                 continue
@@ -208,7 +217,7 @@ def import_log(filename):
                 log.append(trace)
 
                 # update progress bar as we have a completed trace
-                if progress is not None:
+                if checkElementIsNotNone(progress):
                     progress.update()
 
                 trace = None
@@ -218,7 +227,7 @@ def import_log(filename):
                 continue
 
     # gracefully close progress bar
-    if progress is not None:
+    if checkElementIsNotNone(progress):
         progress.close()
     del context, progress
 

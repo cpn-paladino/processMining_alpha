@@ -24,6 +24,7 @@ import alpha.data_structures.alpha_classic_abstraction as alpha_classic_abstract
 # packages about petrinet generation
 from objects.petri.petrinet import PetriNet, Marking
 from objects.petri.utils.utils import add_arc_from_to
+
 '''
 from pm4py import util as pm_util
 from pm4py.algo.discovery.alpha.data_structures import alpha_classic_abstraction
