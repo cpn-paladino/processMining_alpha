@@ -9,3 +9,4 @@ __pycache__/
 desktop.ini
 **/desktop.ini
 *.png
+*:Zone.Identifier
