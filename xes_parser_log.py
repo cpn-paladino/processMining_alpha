@@ -109,7 +109,7 @@ def addClassifierOnTree(tree, parent, element, log, event, trace):
 			log.classifiers[element.get(xes_constants.KEY_NAME)] = classifier_value.split()		
 
 def addLogOnTree(tree, parent, element, log, event, trace):
-	tree[element] = log.attributes
+    tree[element] = log.attributes
 
 actionsAddElementType = {
     xes_constants.TAG_STRING: addStringOnTree,
@@ -166,6 +166,8 @@ def import_log(filename):
 
     # 7 convert xml to Tree of Elements according event at xml using SAX style parsing
     context = etree.iterparse(filename, events=[_EVENT_START, _EVENT_END])
+
+
     ''' pm4py original comment
      check to see if log has a namespace before looking for traces  (but this might be more effort than worth)
      but you could just assume that log use on the standard namespace desbried in XES
@@ -191,6 +193,7 @@ def import_log(filename):
 
     # 12 iterate a context xml elements structure
     for tree_event, elem in context:
+        
         # 13 check element is a start event
         if tree_event == _EVENT_START:  
             # 14 get parent of Node
@@ -237,7 +240,9 @@ def import_log(filename):
                 continue
 
             elif elem.tag.endswith(xes_constants.TAG_TRACE):
-                log.append(trace)
+                # TESTE ELIO
+                if checkElementIsNotNone(log):
+                    log.append(trace)
                 # update progress bar as we have a completed trace
                 if checkElementIsNotNone(progress):
                     progress.update()

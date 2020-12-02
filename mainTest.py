@@ -3,7 +3,10 @@ from alpha import algorithm as alpha_miner
 from visualization import visualizer as pn_vis
 
  # old path: "G:\\Meu Drive\\SIN-5025\\01-Trabalho\\04-Projeto Final\\01-AlphaAlgo\\pm4py-core\\tests\\input_data\\running-example.xes"
-log_path = "running-example.xes"
+#log_path = "running-example.xes"
+#log_elio = "elio_teste.xes"
+log_professor = r'logs_input/logProfessor.xes'
+log_ruido = r'logs_input/ruido.xes'
 
 # created function to visualize log structure
 def saveLog(log):
@@ -15,7 +18,7 @@ def saveLog(log):
 
 def execute_script():
     # 1 process log
-    log = iterparse.import_log(log_path)
+    log = iterparse.import_log(log_ruido)    
     saveLog(log)
     # 2 get petrinet with init and end
     net, i_m, f_m = alpha_miner.apply(log)
@@ -29,7 +32,7 @@ def execute_script():
                                     pn_vis.Variants.WO_DECORATION.value.Parameters.DEBUG: False})
     # pn_vis.view(gviz)
     # 4 save on default path
-    pn_vis.save(gviz, "z22_alpha_miner_petri_net.png")
+    pn_vis.save(gviz, "Z_ELIO.png")
 
 
 if __name__ == "__main__":
