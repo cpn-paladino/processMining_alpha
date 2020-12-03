@@ -8,5 +8,4 @@ __pycache__/
 # other files
 desktop.ini
 **/desktop.ini
-*.png
 *:Zone.Identifier
