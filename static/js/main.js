@@ -6,6 +6,7 @@ openFile = function(event, idDivImage) {
         var dataURL = reader.result;        
         var imageElement = document.createElement("img");
         var imageDiv = document.getElementById(idDivImage);
+        
         imageDiv.innerHTML = '';
         //imageElement.src = dataURL;
         
@@ -36,12 +37,14 @@ openFile = function(event, idDivImage) {
             url: 'http://localhost:5000/get_model',
             data: form,
             success: function(response) { 
-                imageElement.src = response;                
+                imageDiv.classList.add("model-color");
+                path = '/static/output/'+response
+                imageElement.src = path;                
                 imageDiv.appendChild(imageElement)              
             },
             error: function (exr, sender) {
                 console.log(exr)
-                alert('Erro ao carregar pagina');
+                alert('Error when image is obtained');
             }            
         });        
 

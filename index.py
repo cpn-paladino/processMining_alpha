@@ -3,7 +3,10 @@ from flask import Flask, render_template, request, flash, redirect, send_file
 from werkzeug import secure_filename
 from alpha_caller import call
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(),'logs_input')
+BASE_FOLDER = os.getcwd()
+OUTPUT_FOLDER = os.path.join(BASE_FOLDER,'static','output')
+UPLOAD_FOLDER = os.path.join(BASE_FOLDER,'logs_input')
+
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -16,7 +19,22 @@ def allowed_file(filename):
 
 @app.route('/get_model', methods = ['GET', 'POST'])
 def get_model():
-  return send_file('ruido_alpha_discovery.png', mimetype='image/png')
+  base_file = 'ruido_alpha_discovery.png'  
+  currentFile = os.path.join(BASE_FOLDER, base_file)
+  newFile = os.path.join(OUTPUT_FOLDER, base_file)  
+  import shutil
+  shutil.copy(currentFile, newFile) 
+  #outFile = open(newFile,'w')
+
+  #file.save(OUTPUT_FOLDER, currentFile)
+  '''
+  with open(newFile,'w') as file:
+    file_binary = open(currentFile,'r')
+    file.write(file_binary)  
+    file_binary.close()
+  '''    
+  #send_file('ruido_alpha_discovery.png', mimetype='image/png')
+  return base_file
 
 
 
