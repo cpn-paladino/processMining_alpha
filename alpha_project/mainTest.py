@@ -49,5 +49,5 @@ def execute_script(xes_file):
     print(pngFinalMap)
     pn_vis.save(gviz, pngFinalMap)
 
-if __name__ == "__main__":    
-    execute_script(log_ruido)
+#if __name__ == "__main__":    
+#    execute_script(log_ruido)

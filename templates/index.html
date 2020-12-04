@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">    
+    <title>Alpha Miner Discovery</title>
+</head>
+<body>
+    <header id="cabecalho">
+        <h1>Alpha Miner Discovery</h1>
+    </header>
+    <section>
+        <article>
+            <form id='xes_form' action = "http://localhost:5000/uploader" method = "POST" 
+            enctype = "multipart/form-data">
+                <label id="img">Input your XES file:</label>
+                <input type="file" name="file" id="xes-insert"  accept=".xes" onchange="openFile(event, 'model-container')">   
+            </form>
+        </article>
+        <div id="model-container">            
+        </div>
+    </section>
+    <footer>
+        <p> <h3> © 2020 Copyright: Developed by Christopher Paladino - all rights reserved</h3></p>
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
