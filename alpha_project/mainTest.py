@@ -45,9 +45,12 @@ def execute_script(xes_file):
                                     pn_vis.Variants.WO_DECORATION.value.Parameters.DEBUG: False})
     # pn_vis.view(gviz)
     # 4 save on default path
-    pngFinalMap = str(xes_file).replace('logs_input/','').replace('.xes','')+'_alpha_discovery.png'
-    print(pngFinalMap)
-    pn_vis.save(gviz, pngFinalMap)
+    listPath = xes_file.split('/')
+    lastFile = listPath[-1]
+    pngFinalMap = lastFile.replace('.xes','')+'_alpha_discovery.png'
+    import os
+    finalPathFile = os.path.join(os.getcwd(),'models_output/'+pngFinalMap)    
+    pn_vis.save(gviz, finalPathFile)    
 
 #if __name__ == "__main__":    
 #    execute_script(log_ruido)
