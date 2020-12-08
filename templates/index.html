@@ -21,6 +21,10 @@
                 <input type="file" name="file" id="xes-insert"  accept=".xes" onchange="openFile(event, 'model-container')">   
             </form>
         </article>
+        <div id="loading" class="hideDiv">  
+            <h3>Wait please!</h3>
+            <img src="{{ url_for('static', filename='loading.gif') }}" alt="Girl in a jacket">
+        </div>
         <div id="model-container">            
         </div>
     </section>

@@ -9,3 +9,8 @@ __pycache__/
 desktop.ini
 **/desktop.ini
 *:Zone.Identifier
+*Zone.Identifier
+
+# don't ignore:
+!logs_input
+!models_output

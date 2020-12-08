@@ -1,29 +1,61 @@
-// load file
+const getElementById = (elementName) =>{
+    return document.getElementById(elementName);
+}
 
+const setClassDiv = (divName, className) =>{
+    let element = getElementById(divName);
+    element.classList.add(className)
+}
 
+const cleanElement = (divName) =>{
+    let element = getElementById(divName)
+    element.innerHTML = '';       
+}
 
-openFile = function(event, idDivImage) {
+const hideLoader = () =>{
+    let element = getElementById('loading')
+    element.classList.value = '';       
+    setClassDiv('loading','hideDiv')
+}
+
+const showLoader = () =>{
+    let element = getElementById('loading')
+    element.classList.value = '';       
+    setClassDiv('loading','showLoader')
+}
+
+const setModelImg = (divName, pathElement) =>{
+    let element = getElementById(divName)
+    element.classList.add("model-color");
+    let imageElement = document.createElement("img");
+    imageElement.src = pathElement;                
+    element.appendChild(imageElement)        
+}
+
+openFile = (event, idDivImage) => {
     const localServer = 'http://localhost:5000/'
     const prodServer = 'https://alphapaladino.herokuapp.com/'
-    const currentServer = localServer
+    const currentServer = prodServer
     var input = event.target;
     var reader = new FileReader();
 
+    // show loader
+    cleanElement('model-container')
+    
+    showLoader()
+    
     reader.onload = () => {
         var dataURL = reader.result;        
         var imageElement = document.createElement("img");
-        var imageDiv = document.getElementById(idDivImage);
-                
-        const filename = event.target.files[0].name
+        
 
+        const filename = event.target.files[0].name
         const jsondata = {
            'filename': filename
         }
 
-        console.log(filename)
-        
-        imageDiv.innerHTML = '';
-        //imageElement.src = dataURL;
+        var imageDiv = document.getElementById(idDivImage);           
+        //imageDiv.innerHTML = '';       
         
         let form = new FormData();
         form.append('file', event.target.files[0]);         
@@ -37,12 +69,14 @@ openFile = function(event, idDivImage) {
             processData: false,
             url: currentServer+'uploader',
             data: form,
-            success: function(response) { alert(' arquivo ok!'); 
-                alert(response);
+            success: (response) => { 
+                console.log('atualizado com sucesso')
+                //alert(' arquivo ok!'); 
+                //alert(response);
             },
-            error: function (exr, sender) {
+            error: (exr, sender) => {
                 console.log(exr)
-                alert('Erro ao carregar pagina');
+                //alert('Erro ao carregar pagina');
             }            
         });
 
@@ -54,12 +88,13 @@ openFile = function(event, idDivImage) {
             async: false,
             url: currentServer+'process_xes',
             data: JSON.stringify(jsondata),
-            success: function(response) { 
-                alert('Processado com sucesso!');
+            success: (response) => { 
+                console.log('tudo ok')
+                //alert('Processado com sucesso!');
             },
-            error: function (exr, sender) {
+            error: (exr, sender) => {
                 console.log(exr)
-                alert('Error on procces your xml file');
+                //alert('Error on procces your xml file');
             }            
         });        
 
@@ -70,13 +105,16 @@ openFile = function(event, idDivImage) {
             contentType: "application/json; charset=UTF-8",            
             url: currentServer+'get_model',
             data: JSON.stringify(jsondata),
-            success: function(response) {                 
-                imageDiv.classList.add("model-color");
-                path = '/static/output/'+response
-                imageElement.src = path;                
-                imageDiv.appendChild(imageElement)              
+            success: (response) => {   
+
+                const path = '/static/output/'+response
+                setModelImg('model-container', path)   
+
             },
-            error: function (exr, sender) {
+            complete: () => {
+                hideLoader()                
+            },            
+            error: (exr, sender) => {
                 console.log(exr)
                 alert('Error when image is obtained');
             }            

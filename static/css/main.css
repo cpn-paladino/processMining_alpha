@@ -37,17 +37,6 @@ form{
   margin-top: 30px;    
 }
 
-label{
-  font-size: 19px;
-  margin-left: 13px;
-}
-
-#text-input{
-  width: 300px;
-  height: 18px;
-  margin-top:5px;
-}
-
 footer {
   text-align: center;
   width: 600px;
@@ -57,3 +46,38 @@ footer {
   margin-top: 200px;    
 }
 
+.hideDiv{
+  display: None;
+}
+
+.showLoader {
+  display: block;
+  width: 100%;
+  align-items: center;     
+  margin: 0;
+}
+
+.showLoader h3{
+  margin-left: 45%;
+  padding: 0;
+}
+
+.showLoader img{
+  margin-left: 42%;
+  padding: 0; 
+}
+
+#model-container{
+  margin: 0; 
+  padding: 0;
+  width: 100%;
+  height: auto;
+  
+}
+
+#model-container img{  
+  width: 100%;
+  height: auto;    
+  margin: 0; 
+  padding: 0;
+}
