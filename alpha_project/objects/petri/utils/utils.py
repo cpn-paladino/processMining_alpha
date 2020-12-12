@@ -347,7 +347,7 @@ def decorate_transitions_prepostset(net):
     net
         Petri net
     """
-    from pm4py.objects.petri.petrinet import Marking
+    
     for trans in net.transitions:
         sub_marking = Marking()
         add_marking = Marking()

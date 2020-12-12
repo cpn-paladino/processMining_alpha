@@ -1,13 +1,3 @@
-'''
-from pm4py.statistics.variants.log import get as variants_module
-from pm4py.util import xes_constants as xes_util
-from pm4py.objects.petri import semantics
-from pm4py.objects.petri.petrinet import Marking
-from pm4py.objects.petri.utils import get_places_shortest_path_by_hidden, get_s_components_from_petri
-from pm4py.objects.log import log as log_implementation
-from pm4py.objects.petri import align_utils
-from pm4py.util import exec_utils, constants
-'''
 import alpha.constants as constants
 from copy import copy
 from enum import Enum
@@ -1144,8 +1134,6 @@ def apply_variants_dictionary(variants, net, initial_marking, final_marking, par
 def apply_variants_list_petri_string(variants_list, petri_string, parameters=None):
     if parameters is None:
         parameters = {}
-
-    from pm4py.objects.petri.importer.variants import pnml as petri_importer
 
     net, im, fm = petri_importer.import_petri_from_string(petri_string, parameters=parameters)
 

@@ -2,9 +2,6 @@ import xes_parser_log as iterparse
 from alpha import algorithm as alpha_miner
 from visualization import visualizer as pn_vis
 
-# old path: "G:\\Meu Drive\\SIN-5025\\01-Trabalho\\04-Projeto Final\\01-AlphaAlgo\\pm4py-core\\tests\\input_data\\running-example.xes"
-#log_path = "running-example.xes"
-#log_elio = "elio_teste.xes"
 log_professor = r'logs_input/logProfessor.xes'
 log_ruido = r'logs_input/ruido.xes'
 
@@ -28,7 +25,6 @@ def cleanXmlLogAttributes(filepath):
 
 def execute_script(xes_file):
     # 1 process log    
-
     xmlCleaned = cleanXmlLogAttributes(xes_file)
 
     log = iterparse.import_log(xmlCleaned)    

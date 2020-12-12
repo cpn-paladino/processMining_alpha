@@ -53,7 +53,7 @@ def graphviz_visualization(net, image_format="png", initial_marking=None, final_
 
     Parameters
     ----------
-    net: :class:`pm4py.entities.petri.petrinet.PetriNet`
+    net: :class:`entities.petri.petrinet.PetriNet`
         Petri net
     image_format
         Format that should be associated to the image
@@ -97,7 +97,7 @@ def graphviz_visualization(net, image_format="png", initial_marking=None, final_
                 viz.node(str(id(t)), decorations[t]["label"], style='filled', fillcolor=decorations[t]["color"],
                          border='1')
             else:
-                viz.node(str(id(t)), str(t.label))
+                viz.node(str(id(t)), str(t.label), style='filled', fillcolor='skyblue')
         else:
             if debug:
                 viz.node(str(id(t)), str(t.name))
@@ -126,7 +126,7 @@ def graphviz_visualization(net, image_format="png", initial_marking=None, final_
         if p in initial_marking:
             viz.node(str(id(p)), str(initial_marking[p]), style='filled', fillcolor="green")
         elif p in final_marking:
-            viz.node(str(id(p)), "", style='filled', fillcolor="orange")
+            viz.node(str(id(p)), "", style='filled', fillcolor="lightcoral")
         else:
             if debug:
                 viz.node(str(id(p)), str(p.name))
@@ -135,7 +135,8 @@ def graphviz_visualization(net, image_format="png", initial_marking=None, final_
                     viz.node(str(id(p)), decorations[p]["label"], style='filled', fillcolor=decorations[p]["color"],
                              fontsize='6')
                 else:
-                    viz.node(str(id(p)), "")
+                    viz.node(str(id(p)), "", style='filled', fillcolor='yellow')
+                    # viz.node(str(id(p)), "")
 
     # add arcs, in order by their source and target objects names, to avoid undeterminism in the visualization
     arcs_sort_list = sorted(list(net.arcs), key=lambda x: (x.source.name, x.target.name))

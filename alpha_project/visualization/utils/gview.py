@@ -27,7 +27,7 @@ def matplotlib_view(gviz):
         Graphviz
     """
 
-    from pm4py.visualization.common import save
+    
     import matplotlib.pyplot as plt
     import matplotlib.image as mpimg
 

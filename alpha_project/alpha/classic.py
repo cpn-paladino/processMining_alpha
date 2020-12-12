@@ -28,25 +28,13 @@ from objects.petri.utils.utils import add_arc_from_to
 
 
 
-'''
-from pm4py import util as pm_util
-from pm4py.algo.discovery.alpha.data_structures import alpha_classic_abstraction
-from pm4py.algo.discovery.alpha.utils import endpoints
-from pm4py.objects.dfg.utils import dfg_utils
-from pm4py.algo.discovery.dfg.variants import native as dfg_inst
---OK from pm4py.objects.petri.petrinet import PetriNet, Marking
-from pm4py.objects.petri.utils import add_arc_from_to
-from pm4py.algo.discovery.parameters import Parameters
-from pm4py.util import exec_utils
-'''
-
 def apply(log, parameters=None):
     """
     This method calls the \"classic\" alpha miner [1]_.
 
     Parameters
     ----------
-    log: :class:`pm4py.log.log.EventLog`
+    log: :class:`log.log.EventLog`
         Event log to use in the alpha miner
     parameters:
         Parameters of the algorithm, including:
@@ -56,11 +44,11 @@ def apply(log, parameters=None):
 
     Returns
     -------
-    net: :class:`pm4py.entities.petri.petrinet.PetriNet`
+    net: :class:`entities.petri.petrinet.PetriNet`
         A Petri net describing the event log that is provided as an input
-    initial marking: :class:`pm4py.models.net.Marking`
+    initial marking: :class:`models.net.Marking`
         marking object representing the initial marking
-    final marking: :class:`pm4py.models.net.Marking`
+    final marking: :class:`models.net.Marking`
         marking object representing the final marking, not guaranteed that it is actually reachable!
 
     References
@@ -94,11 +82,11 @@ def apply_dfg(dfg, parameters=None):
 
     Returns
     -------
-    net : :class:`pm4py.entities.petri.petrinet.PetriNet`
+    net : :class:`entities.petri.petrinet.PetriNet`
         A Petri net describing the event log that is provided as an input
-    initial marking : :class:`pm4py.models.net.Marking`
+    initial marking : :class:`models.net.Marking`
         marking object representing the initial marking
-    final marking : :class:`pm4py.models.net.Marking`
+    final marking : :class:`models.net.Marking`
         marking object representing the final marking, not guaranteed that it is actually reachable!
     """
 
@@ -124,11 +112,11 @@ def apply_dfg_sa_ea(dfg, start_activities, end_activities, parameters=None):
 
     Returns
     -------
-    net : :class:`pm4py.entities.petri.petrinet.PetriNet`
+    net : :class:`entities.petri.petrinet.PetriNet`
         A Petri net describing the event log that is provided as an input
-    initial marking : :class:`pm4py.models.net.Marking`
+    initial marking : :class:`models.net.Marking`
         marking object representing the initial marking
-    final marking : :class:`pm4py.models.net.Marking`
+    final marking : :class:`models.net.Marking`
         marking object representing the final marking, not guaranteed that it is actually reachable!
     """
     if parameters is None:

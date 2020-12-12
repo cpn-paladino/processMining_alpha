@@ -53,7 +53,7 @@ def apply(log, parameters=None):
 
       Parameters
       ----------
-      log: :class:`pm4py.log.log.EventLog`
+      log: :class:`log.log.EventLog`
           An Event log
       include_case_attributes:
           Default is True
@@ -64,7 +64,7 @@ def apply(log, parameters=None):
 
       Returns
           -------
-      log : :class:`pm4py.log.log.EventLog`
+      log : :class:`log.log.EventLog`
           An Event stream
       """
     if parameters is None:
@@ -111,7 +111,7 @@ def __transform_event_log_to_event_stream(log, include_case_attributes=True,
 
       Parameters
       ----------
-      log: :class:`pm4py.log.log.EventLog`
+      log: :class:`log.log.EventLog`
           An Event log
       include_case_attributes:
           Default is True
@@ -122,7 +122,7 @@ def __transform_event_log_to_event_stream(log, include_case_attributes=True,
 
       Returns
           -------
-      log : :class:`pm4py.log.log.EventLog`
+      log : :class:`log.log.EventLog`
           An Event stream
       """
     events = []

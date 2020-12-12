@@ -32,7 +32,7 @@ def apply(net, initial_marking=None, final_marking=None, log=None, aggregated_st
     if log is not None:
         if pkgutil.find_loader("pandas"):
             import pandas
-            from pm4py.objects.log.util import dataframe_utils
+            
 
             if isinstance(log, pandas.core.frame.DataFrame):
                 log = dataframe_utils.convert_timestamp_columns_in_df(log)

@@ -45,7 +45,7 @@ def __transform_event_stream_to_event_log(log, case_glue=Parameters.CASE_ID_KEY.
 
     Parameters
     ----------
-    log: :class:`pm4py.log.log.EventLog`
+    log: :class:`log.log.EventLog`
         An event stream
     case_glue:
         Case identifier. Default is 'case:concept:name'
@@ -58,7 +58,7 @@ def __transform_event_stream_to_event_log(log, case_glue=Parameters.CASE_ID_KEY.
 
     Returns
         -------
-    log : :class:`pm4py.log.log.EventLog`
+    log : :class:`log.log.EventLog`
         An event log
     """
     if enable_deepcopy:

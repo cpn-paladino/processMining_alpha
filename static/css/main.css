@@ -68,11 +68,10 @@ footer {
 }
 
 #model-container{
-  margin: 0; 
+  margin: 2% 0 0 0; 
   padding: 0;
   width: 100%;
-  height: auto;
-  
+  height: auto;  
 }
 
 #model-container img{  

@@ -146,7 +146,7 @@ def import_log(filename):
             Parameters.MAX_TRACES -> Specify the maximum number of traces to import from the log (read in order in the XML file)
     Returns
     -------
-    log : :class:`pm4py.log.log.EventLog`
+    log : :class:`log.log.EventLog`
         A log
     """
     from lxml import etree    
@@ -168,7 +168,7 @@ def import_log(filename):
     context = etree.iterparse(filename, events=[_EVENT_START, _EVENT_END])
 
 
-    ''' pm4py original comment
+    ''' 
      check to see if log has a namespace before looking for traces  (but this might be more effort than worth)
      but you could just assume that log use on the standard namespace desbried in XES
      to only find elements that start a trace use tag="{http://www.xes-standard.org}trace"

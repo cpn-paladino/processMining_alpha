@@ -4,7 +4,7 @@ import numpy as np
 import pkgutil
 import logging
 from alpha.constants import DEFAULT_VARIANT_SEP
-# from pm4py.util.constants import DEFAULT_VARIANT_SEP
+
 
 PARAMETER_VARIANT_SEP = "variant_sep"
 
