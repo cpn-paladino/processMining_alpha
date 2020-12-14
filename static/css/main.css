@@ -24,7 +24,7 @@ h1{
   position: relative;   
 }
 
-#header_main{
+#header_main {
   margin-top:0;
   width: 100%;
   height: 90px;
@@ -32,18 +32,26 @@ h1{
   margin-bottom: 20px;
 }
 
-form{
+#header_main h1{
+  font-size: 30px;
+  text-align:center;   
+  vertical-align:middle;  
+  height: 50%;
+}
+
+.mainForm{
   text-align: center;
   margin-top: 30px;    
 }
 
 footer {
   text-align: center;
-  width: 600px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   color: black;
   margin-top: 200px;    
+  font-size: 10px;
 }
 
 .hideDiv{
